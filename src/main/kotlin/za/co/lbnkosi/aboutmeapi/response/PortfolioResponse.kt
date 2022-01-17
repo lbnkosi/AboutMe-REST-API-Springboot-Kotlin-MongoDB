@@ -14,30 +14,30 @@ import za.co.lbnkosi.aboutmeapi.response.WorkResponse.Companion.copyWorkToRespon
 
 class PortfolioResponse(
     var user: UserResponse,
-    var contactList: ArrayList<ContactResponse>,
-    var addressList: ArrayList<AddressResponse>,
-    var workList: ArrayList<WorkResponse>,
-    var educationList: ArrayList<EducationResponse>,
-    var skillsList: ArrayList<SkillResponse>,
-    var languageList: ArrayList<LanguageResponse>,
-    var competencyList: ArrayList<CompetencyResponse>,
-    var socialList: ArrayList<SocialResponse>,
-    var projectList: ArrayList<ProjectResponse>
+    var contactList: ArrayList<ContactResponse>?,
+    var addressList: ArrayList<AddressResponse>?,
+    var workList: ArrayList<WorkResponse>?,
+    var educationList: ArrayList<EducationResponse>?,
+    var skillsList: ArrayList<SkillResponse>?,
+    var languageList: ArrayList<LanguageResponse>?,
+    var competencyList: ArrayList<CompetencyResponse>?,
+    var socialList: ArrayList<SocialResponse>?,
+    var projectList: ArrayList<ProjectResponse>?
 ) {
 
     companion object {
         fun fromEntity(portfolio: Portfolio): PortfolioResponse {
             return PortfolioResponse(
                 user = portfolio.user.copyUserToResponse(),
-                contactList = portfolio.contactList.copyContactToResponse(),
-                addressList = portfolio.addressList.copyAddressToResponse(),
-                workList = portfolio.workList.copyWorkToResponse(),
-                educationList = portfolio.educationList.copyEducationToResponse(),
-                skillsList = portfolio.skillsList.copySkillToResponse(),
-                languageList = portfolio.languageList.copyLanguageToResponse(),
-                competencyList = portfolio.competencyList.copyCompetencyToResponse(),
-                socialList = portfolio.socialList.copySocialToResponse(),
-                projectList = portfolio.projectList.copyProjectToResponse()
+                contactList = portfolio.contacts?.copyContactToResponse(),
+                addressList = portfolio.addresses?.copyAddressToResponse(),
+                workList = portfolio.employmentHistory?.copyWorkToResponse(),
+                educationList = portfolio.education?.copyEducationToResponse(),
+                skillsList = portfolio.skills?.copySkillToResponse(),
+                languageList = portfolio.langauges?.copyLanguageToResponse(),
+                competencyList = portfolio.competencies?.copyCompetencyToResponse(),
+                socialList = portfolio.socials?.copySocialToResponse(),
+                projectList = portfolio.projects?.copyProjectToResponse()
             )
         }
     }

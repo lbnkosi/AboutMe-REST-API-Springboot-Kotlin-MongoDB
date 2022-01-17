@@ -4,6 +4,4 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import za.co.lbnkosi.aboutmeapi.models.Skill
 import za.co.lbnkosi.aboutmeapi.models.User
 
-interface SkillsRepository: MongoRepository<Skill, String> {
-    fun findUserByEmail(email: String): Skill
-}
+interface SkillsRepository: MongoRepository<Skill, String>

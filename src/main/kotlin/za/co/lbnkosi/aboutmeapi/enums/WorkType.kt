@@ -1,7 +1,7 @@
 package za.co.lbnkosi.aboutmeapi.enums
 
-enum class WorkType {
-    PERMANENT,
-    CONTRACT,
-    PART_TIME
+enum class WorkType(val workType: String) {
+    PERMANENT(""),
+    CONTRACT(""),
+    PART_TIME("")
 }

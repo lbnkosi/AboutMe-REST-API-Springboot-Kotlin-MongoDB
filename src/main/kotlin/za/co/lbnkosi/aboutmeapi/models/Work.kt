@@ -1,10 +1,15 @@
 package za.co.lbnkosi.aboutmeapi.models
 
+import org.bson.types.ObjectId
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 import za.co.lbnkosi.aboutmeapi.enums.WorkType
 import java.util.*
 
+@Document("work")
 data class Work(
-    var email: String = "",
+    @Id var id: ObjectId? = null,
+    var uid: String = "",
     var alias: String = "",
     var companyName: String = "",
     var position: String = "",
@@ -13,7 +18,5 @@ data class Work(
     var currentPosition: Boolean = false,
     var logo: String = "",
     var description: String = "",
-    var address: Address = Address(),
-    var contact: Contact = Contact(),
-    var workType: WorkType = WorkType.PERMANENT
+    var workType: String = WorkType.PERMANENT.toString()
 )

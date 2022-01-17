@@ -1,17 +1,20 @@
 package za.co.lbnkosi.aboutmeapi.response
 
+import org.bson.types.ObjectId
 import za.co.lbnkosi.aboutmeapi.enums.AddressType
 import za.co.lbnkosi.aboutmeapi.models.Address
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 
 class AddressResponse(
+    var id: ObjectId?,
+    var uid: String,
     var alias: String,
     var street: String,
     var suburb: String,
     var city: String,
     var province: String,
     var postalCode: String,
-    var addressType: AddressType
+    var addressType: String
 ) {
     companion object {
 
@@ -25,6 +28,8 @@ class AddressResponse(
 
         fun Address.toRequest(): AddressResponse {
             return AddressResponse(
+                id = this.id,
+                uid = this.uid,
                 alias = this.alias,
                 street = this.street,
                 suburb = this.suburb,

@@ -1,14 +1,14 @@
 package za.co.lbnkosi.aboutmeapi.models
 
 data class Portfolio(
-    var user: User = User(),
-    var contactList: ArrayList<Contact> = arrayListOf(),
-    var addressList: ArrayList<Address> = arrayListOf(),
-    var workList: ArrayList<Work> = arrayListOf(),
-    var educationList: ArrayList<Education> = arrayListOf(),
-    var skillsList: ArrayList<Skill> = arrayListOf(),
-    var languageList: ArrayList<Language> = arrayListOf(),
-    var competencyList: ArrayList<Competency> = arrayListOf(),
-    var socialList: ArrayList<Social> = arrayListOf(),
-    var projectList: ArrayList<Project> = arrayListOf()
+    @Transient var user: User = User(),
+    @Transient var contacts: ArrayList<Contact>? = arrayListOf(),
+    @Transient var addresses: ArrayList<Address>? = arrayListOf(),
+    @Transient var employmentHistory: ArrayList<Work>? = arrayListOf(),
+    @Transient var education: ArrayList<Education>? = arrayListOf(),
+    @Transient var skills: ArrayList<Skill>? = arrayListOf(),
+    @Transient var langauges: ArrayList<Language>? = arrayListOf(),
+    @Transient var competencies: ArrayList<Competency>? = arrayListOf(),
+    @Transient var socials: ArrayList<Social>? = arrayListOf(),
+    @Transient var projects: ArrayList<Project>? = arrayListOf()
 )

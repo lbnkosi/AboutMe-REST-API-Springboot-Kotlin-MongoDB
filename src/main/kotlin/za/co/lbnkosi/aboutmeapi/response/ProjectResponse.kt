@@ -1,10 +1,14 @@
 package za.co.lbnkosi.aboutmeapi.response
 
+import org.bson.types.ObjectId
 import za.co.lbnkosi.aboutmeapi.models.Project
 import za.co.lbnkosi.aboutmeapi.requests.PortfolioRequest
 import za.co.lbnkosi.aboutmeapi.requests.ProjectRequest
+import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class ProjectResponse(
+    var id: ObjectId?,
+    var uid: String,
     var name: String = "",
     var platform: String = "",
     var downloadLink: String = "",
@@ -18,6 +22,8 @@ class ProjectResponse(
             this.forEach {
                 projectList.add(
                     ProjectResponse(
+                        id = it.id,
+                        uid = it.uid,
                         name = it.name,
                         platform = it.platform,
                         downloadLink = it.downloadLink,

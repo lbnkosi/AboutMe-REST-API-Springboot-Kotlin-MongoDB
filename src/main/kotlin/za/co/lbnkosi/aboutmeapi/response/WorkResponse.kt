@@ -1,5 +1,6 @@
 package za.co.lbnkosi.aboutmeapi.response
 
+import org.bson.types.ObjectId
 import za.co.lbnkosi.aboutmeapi.enums.WorkType
 import za.co.lbnkosi.aboutmeapi.models.Work
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
@@ -11,6 +12,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class WorkResponse(
+    var id: ObjectId?,
+    var uid: String,
     var alias: String,
     var companyName: String,
     var position: String,
@@ -19,9 +22,7 @@ class WorkResponse(
     var currentPosition: Boolean,
     var logo: String,
     var description: String,
-    var address: AddressResponse,
-    var contact: ContactResponse,
-    var workType: WorkType = WorkType.PERMANENT
+    var workType: String
 ) {
     companion object {
         fun ArrayList<Work>.copyWorkToResponse(): ArrayList<WorkResponse> {
@@ -29,6 +30,8 @@ class WorkResponse(
             this.forEach {
                 workList.add(
                     WorkResponse(
+                        id = it.id,
+                        uid = it.uid,
                         alias = it.alias,
                         companyName = it.companyName,
                         position = it.position,
@@ -37,8 +40,6 @@ class WorkResponse(
                         currentPosition = it.currentPosition,
                         logo = it.logo,
                         description = it.description,
-                        address = it.address.toRequest(),
-                        contact = it.contact.toRequest(),
                         workType = it.workType
                     )
                 )

@@ -1,9 +1,12 @@
 package za.co.lbnkosi.aboutmeapi.requests
 
+import org.bson.types.ObjectId
 import za.co.lbnkosi.aboutmeapi.enums.WorkType
 import java.util.*
 
 data class WorkRequest(
+    var id: ObjectId? = null,
+    var uid: String = "",
     var alias: String = "",
     var companyName: String = "",
     var position: String = "",
@@ -12,7 +15,5 @@ data class WorkRequest(
     var currentPosition: Boolean = false,
     var logo: String = "",
     var description: String = "",
-    var address: AddressRequest = AddressRequest(),
-    var contact: ContactRequest = ContactRequest(),
-    var workType: WorkType = WorkType.PERMANENT
+    var workType: String = WorkType.PERMANENT.toString()
 )
