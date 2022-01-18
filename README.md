@@ -15,4 +15,4 @@ One of the issues I faced was, what backend do I use. My mind instantly jumped t
 
 ## Note
 
-* If you fork this, don't forget to setup a MongoDb database and add your mongodb config to SimpleMongoConfig.kt and application.properties files with the following line: mongodb+srv://<name>:<password>B@cluster0.lwsvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+* If you fork this, don't forget to setup a MongoDb database and add your mongodb config to SimpleMongoConfig.kt and application.properties files with the following line: mongodb+srv://name:passwordB@cluster0.lwsvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
