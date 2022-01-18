@@ -6,7 +6,7 @@ import za.co.lbnkosi.aboutmeapi.requests.SocialRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class SocialResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var name: String,
     var link: String,
@@ -18,7 +18,7 @@ class SocialResponse(
             this.forEach {
                 socialList.add(
                     SocialResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         name = it.name,
                         link = it.link,

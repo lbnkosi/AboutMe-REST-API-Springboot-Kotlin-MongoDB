@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.LanguageRequest
+import za.co.lbnkosi.aboutmeapi.response.LanguageResponse.Companion.copyLanguageToResponse
 import za.co.lbnkosi.aboutmeapi.service.LanguageService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -26,7 +27,7 @@ class LanguageController(private val languageService: LanguageService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val language = languageService.findAll(uid)
-            ResponseEntity.ok(language)
+            ResponseEntity.ok(language.copyLanguageToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

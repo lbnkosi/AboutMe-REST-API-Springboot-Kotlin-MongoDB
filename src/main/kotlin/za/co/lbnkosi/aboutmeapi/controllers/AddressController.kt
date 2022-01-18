@@ -28,7 +28,7 @@ class AddressController(private val addressService: AddressService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val addresses = addressService.findAll(uid)
-            ResponseEntity.ok(addresses)
+            ResponseEntity.ok(addresses.copyAddressToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

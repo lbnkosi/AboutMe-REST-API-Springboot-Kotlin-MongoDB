@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class WorkResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var alias: String,
     var companyName: String,
@@ -30,7 +30,7 @@ class WorkResponse(
             this.forEach {
                 workList.add(
                     WorkResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         alias = it.alias,
                         companyName = it.companyName,

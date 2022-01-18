@@ -6,7 +6,7 @@ import za.co.lbnkosi.aboutmeapi.requests.CompetencyRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class CompetencyResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var name: String,
     var rating: Int,
@@ -18,7 +18,7 @@ class CompetencyResponse(
             this.forEach {
                 competencyList.add(
                     CompetencyResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         name = it.name,
                         rating = it.rating,

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.SkillRequest
+import za.co.lbnkosi.aboutmeapi.response.SkillResponse.Companion.copySkillToResponse
 import za.co.lbnkosi.aboutmeapi.service.SkillService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -26,7 +27,7 @@ class SkillController(private val skillService: SkillService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val skill = skillService.findAll(uid)
-            ResponseEntity.ok(skill)
+            ResponseEntity.ok(skill.copySkillToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

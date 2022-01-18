@@ -7,7 +7,7 @@ import za.co.lbnkosi.aboutmeapi.requests.ProjectRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class ProjectResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var name: String = "",
     var platform: String = "",
@@ -22,7 +22,7 @@ class ProjectResponse(
             this.forEach {
                 projectList.add(
                     ProjectResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         name = it.name,
                         platform = it.platform,

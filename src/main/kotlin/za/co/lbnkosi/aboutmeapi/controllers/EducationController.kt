@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.EducationRequest
+import za.co.lbnkosi.aboutmeapi.response.EducationResponse.Companion.copyEducationToResponse
 import za.co.lbnkosi.aboutmeapi.service.EducationService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -25,7 +26,7 @@ class EducationController(private val educationService: EducationService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val education = educationService.findAll(uid)
-            ResponseEntity.ok(education)
+            ResponseEntity.ok(education.copyEducationToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

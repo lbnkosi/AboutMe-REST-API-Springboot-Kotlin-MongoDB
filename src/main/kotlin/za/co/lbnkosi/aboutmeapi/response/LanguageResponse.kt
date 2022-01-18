@@ -7,7 +7,7 @@ import za.co.lbnkosi.aboutmeapi.requests.LanguageRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class LanguageResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var name: String,
     var writingFluency: String,
@@ -20,7 +20,7 @@ class LanguageResponse(
             this.forEach {
                 languageList.add(
                     LanguageResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         name = it.name,
                         writingFluency = it.writingFluency,

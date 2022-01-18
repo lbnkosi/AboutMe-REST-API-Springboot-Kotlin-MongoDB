@@ -6,7 +6,7 @@ import za.co.lbnkosi.aboutmeapi.models.User
 import java.util.*
 
 class UserResponse(
-    var id: ObjectId? = null,
+    var id: String? = null,
     var uid: String = "",
     var name: String = "",
     var secondName: String = "",
@@ -20,7 +20,7 @@ class UserResponse(
     companion object {
         fun User.copyUserToResponse(): UserResponse {
             val userResponse = UserResponse()
-            userResponse.id = this.id
+            userResponse.id = this.id?.toHexString()
             userResponse.uid = this.uid
             userResponse.dateOfBirth = this.dateOfBirth
             userResponse.gender = this.gender

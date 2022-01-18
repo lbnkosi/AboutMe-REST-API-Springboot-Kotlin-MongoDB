@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.ProjectRequest
+import za.co.lbnkosi.aboutmeapi.response.ProjectResponse.Companion.copyProjectToResponse
 import za.co.lbnkosi.aboutmeapi.service.ProjectService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -26,7 +27,7 @@ class ProjectController(private val projectService: ProjectService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val project = projectService.findAll(uid)
-            ResponseEntity.ok(project)
+            ResponseEntity.ok(project.copyProjectToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

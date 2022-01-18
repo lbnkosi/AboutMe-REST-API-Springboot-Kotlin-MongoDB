@@ -7,7 +7,7 @@ import za.co.lbnkosi.aboutmeapi.requests.ContactRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class ContactResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var alias: String,
     var primaryNumber: String,
@@ -27,7 +27,7 @@ class ContactResponse(
 
         fun Contact.toRequest(): ContactResponse {
             return ContactResponse(
-                id = this.id,
+                id = this.id?.toHexString(),
                 uid = this.uid,
                 alias = this.alias,
                 primaryNumber = this.primaryNumber,

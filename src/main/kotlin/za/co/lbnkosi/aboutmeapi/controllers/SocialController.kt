@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.SocialRequest
+import za.co.lbnkosi.aboutmeapi.response.SocialResponse.Companion.copySocialToResponse
 import za.co.lbnkosi.aboutmeapi.service.SocialService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -26,7 +27,7 @@ class SocialController(private val socialService: SocialService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val social = socialService.findAll(uid)
-            ResponseEntity.ok(social)
+            ResponseEntity.ok(social.copySocialToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

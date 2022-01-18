@@ -3,6 +3,16 @@ package za.co.lbnkosi.aboutmeapi.controllers
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapAddressControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapCompetencyControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapContactControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapEducationControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapLanguageControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapProjectControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapSkillControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapSocialControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapUserControllerResponse
+import za.co.lbnkosi.aboutmeapi.extensions.Extensions.mapWorkControllerResponse
 import za.co.lbnkosi.aboutmeapi.models.*
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 import za.co.lbnkosi.aboutmeapi.utils.Constants.KEY_STRING
@@ -39,19 +49,22 @@ class PortfolioController(
     }
 
     @GetMapping
-    fun get(@RequestParam(name = KEY_STRING) key: String?, @RequestParam(name = "uid") uid: String?): ResponseEntity<Any>? {
+    fun get(
+        @RequestParam(name = KEY_STRING) key: String?,
+        @RequestParam(name = "uid") uid: String?
+    ): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid()) {
             val portfolio = Portfolio(
-                user = userController.get(key, uid)?.body as User,
-                contacts = contactController.get(key, uid)?.body as? ArrayList<Contact>,
-                addresses = addressController.get(key, uid)?.body as? ArrayList<Address>,
-                employmentHistory = workController.get(key, uid)?.body as? ArrayList<Work>,
-                education = educationController.get(key, uid)?.body as? ArrayList<Education>,
-                skills = skillController.get(key, uid)?.body as? ArrayList<Skill>,
-                langauges = languageController.get(key, uid)?.body as? ArrayList<Language>,
-                competencies = competencyController.get(key, uid)?.body as? ArrayList<Competency>,
-                socials = socialController.get(key, uid)?.body as? ArrayList<Social>,
-                projects = projectController.get(key, uid)?.body as? ArrayList<Project>
+                user = userController.get(key, uid)?.mapUserControllerResponse(),
+                contacts = contactController.get(key, uid)?.mapContactControllerResponse(),
+                addresses = addressController.get(key, uid)?.mapAddressControllerResponse(),
+                employmentHistory = workController.get(key, uid)?.mapWorkControllerResponse(),
+                education = educationController.get(key, uid)?.mapEducationControllerResponse(),
+                skills = skillController.get(key, uid)?.mapSkillControllerResponse(),
+                langauges = languageController.get(key, uid)?.mapLanguageControllerResponse(),
+                competencies = competencyController.get(key, uid)?.mapCompetencyControllerResponse(),
+                socials = socialController.get(key, uid)?.mapSocialControllerResponse(),
+                projects = projectController.get(key, uid)?.mapProjectControllerResponse()
             )
             ResponseEntity.ok(portfolio)
         } else {

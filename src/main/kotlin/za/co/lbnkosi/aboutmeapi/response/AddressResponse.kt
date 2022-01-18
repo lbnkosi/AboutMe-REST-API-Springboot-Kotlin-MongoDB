@@ -6,7 +6,7 @@ import za.co.lbnkosi.aboutmeapi.models.Address
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 
 class AddressResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var alias: String,
     var street: String,
@@ -28,7 +28,7 @@ class AddressResponse(
 
         fun Address.toRequest(): AddressResponse {
             return AddressResponse(
-                id = this.id,
+                id = this.id?.toHexString(),
                 uid = this.uid,
                 alias = this.alias,
                 street = this.street,

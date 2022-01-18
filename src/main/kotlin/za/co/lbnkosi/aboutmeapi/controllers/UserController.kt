@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.UserRequest
+import za.co.lbnkosi.aboutmeapi.response.UserResponse.Companion.copyUserToResponse
 import za.co.lbnkosi.aboutmeapi.service.UserService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -26,7 +27,7 @@ class UserController(private val userService: UserService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val user = userService.findAll(uid)
-            ResponseEntity.ok(user)
+            ResponseEntity.ok(user?.copyUserToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

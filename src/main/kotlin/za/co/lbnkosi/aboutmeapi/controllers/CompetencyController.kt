@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.CompetencyRequest
+import za.co.lbnkosi.aboutmeapi.response.CompetencyResponse.Companion.copyCompetencyToResponse
 import za.co.lbnkosi.aboutmeapi.service.CompetencyService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
 
@@ -25,7 +26,7 @@ class CompetencyController(private val competencyService: CompetencyService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val competencies = competencyService.findAll(uid)
-            ResponseEntity.ok(competencies)
+            ResponseEntity.ok(competencies.copyCompetencyToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

@@ -6,7 +6,7 @@ import za.co.lbnkosi.aboutmeapi.requests.SkillRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class SkillResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var name: String
 ) {
@@ -16,7 +16,7 @@ class SkillResponse(
             this.forEach {
                 skillList.add(
                     SkillResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         name = it.name
                     )

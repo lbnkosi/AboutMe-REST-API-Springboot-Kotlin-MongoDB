@@ -9,7 +9,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class EducationResponse(
-    var id: ObjectId?,
+    var id: String?,
     var uid: String,
     var alias: String,
     var name: String,
@@ -25,7 +25,7 @@ class EducationResponse(
             this.forEach {
                 educationList.add(
                     EducationResponse(
-                        id = it.id,
+                        id = it.id?.toHexString(),
                         uid = it.uid,
                         alias = it.alias,
                         name = it.name,

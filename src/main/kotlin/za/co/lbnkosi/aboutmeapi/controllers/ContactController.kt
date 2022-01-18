@@ -6,6 +6,7 @@ import za.co.lbnkosi.aboutmeapi.controllers.KeyController.isKeyValid
 import za.co.lbnkosi.aboutmeapi.requests.AddressRequest
 import za.co.lbnkosi.aboutmeapi.requests.ContactRequest
 import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
+import za.co.lbnkosi.aboutmeapi.response.ContactResponse.Companion.copyContactToResponse
 import za.co.lbnkosi.aboutmeapi.response.ContactResponse.Companion.toRequest
 import za.co.lbnkosi.aboutmeapi.service.ContactService
 import za.co.lbnkosi.aboutmeapi.utils.Constants
@@ -28,7 +29,7 @@ class ContactController(private val contactService: ContactService) {
     fun get(@RequestParam(name = Constants.KEY_STRING) key: String?, @RequestParam (name = "uid") uid: String?): ResponseEntity<Any>? {
         return if (!key.isNullOrEmpty() && key.isKeyValid() && !uid.isNullOrEmpty()) {
             val contact = contactService.findAll(uid)
-            ResponseEntity.ok(contact)
+            ResponseEntity.ok(contact.copyContactToResponse())
         } else {
             ResponseEntity.ok(ErrorController.genericError())
         }

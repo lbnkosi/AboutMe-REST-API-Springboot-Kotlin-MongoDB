@@ -13,7 +13,7 @@ import za.co.lbnkosi.aboutmeapi.response.UserResponse.Companion.copyUserToRespon
 import za.co.lbnkosi.aboutmeapi.response.WorkResponse.Companion.copyWorkToResponse
 
 class PortfolioResponse(
-    var user: UserResponse,
+    var user: UserResponse?,
     var contactList: ArrayList<ContactResponse>?,
     var addressList: ArrayList<AddressResponse>?,
     var workList: ArrayList<WorkResponse>?,
@@ -28,16 +28,16 @@ class PortfolioResponse(
     companion object {
         fun fromEntity(portfolio: Portfolio): PortfolioResponse {
             return PortfolioResponse(
-                user = portfolio.user.copyUserToResponse(),
-                contactList = portfolio.contacts?.copyContactToResponse(),
-                addressList = portfolio.addresses?.copyAddressToResponse(),
-                workList = portfolio.employmentHistory?.copyWorkToResponse(),
-                educationList = portfolio.education?.copyEducationToResponse(),
-                skillsList = portfolio.skills?.copySkillToResponse(),
-                languageList = portfolio.langauges?.copyLanguageToResponse(),
-                competencyList = portfolio.competencies?.copyCompetencyToResponse(),
-                socialList = portfolio.socials?.copySocialToResponse(),
-                projectList = portfolio.projects?.copyProjectToResponse()
+                user = portfolio.user,
+                contactList = portfolio.contacts,
+                addressList = portfolio.addresses,
+                workList = portfolio.employmentHistory,
+                educationList = portfolio.education,
+                skillsList = portfolio.skills,
+                languageList = portfolio.langauges,
+                competencyList = portfolio.competencies,
+                socialList = portfolio.socials,
+                projectList = portfolio.projects
             )
         }
     }
