@@ -20,7 +20,8 @@ class ProjectService(private val projectRepository: ProjectRepository) {
                 githubLink = projectRequest.githubLink,
                 description = projectRequest.description,
                 image = projectRequest.image,
-                uid = projectRequest.uid
+                uid = projectRequest.uid,
+                featured = projectRequest.featured
             )
         )
     }
@@ -36,6 +37,7 @@ class ProjectService(private val projectRepository: ProjectRepository) {
             description = projectRequest.description
             image = projectRequest.image
             uid = projectRequest.uid
+            featured = projectRequest.featured
         })
     }
 

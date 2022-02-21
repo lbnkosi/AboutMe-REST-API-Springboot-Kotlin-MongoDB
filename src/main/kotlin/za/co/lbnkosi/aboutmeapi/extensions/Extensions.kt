@@ -137,7 +137,8 @@ object Extensions {
                     downloadLink = body.downloadLink,
                     githubLink = body.githubLink,
                     description = body.description,
-                    image = body.image
+                    image = body.image,
+                    featured = body.featured
                 )
             )
         }

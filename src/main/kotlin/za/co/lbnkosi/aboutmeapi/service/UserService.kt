@@ -19,9 +19,12 @@ class UserService(private val userRepository: UserRepository) {
                 surname = userRequest.surname,
                 title = userRequest.title,
                 profileImage = userRequest.profileImage,
+                headerImage = userRequest.headerImage,
+                summary = userRequest.summary,
                 gender = userRequest.gender,
                 dateOfBirth = userRequest.dateOfBirth,
                 resume = userRequest.resume,
+                resumeOutdated = userRequest.resumeOutdated,
                 uid = userRequest.uid
             )
         )
@@ -36,9 +39,12 @@ class UserService(private val userRepository: UserRepository) {
             surname = userRequest.surname
             title = userRequest.title
             profileImage = userRequest.profileImage
+            headerImage = userRequest.headerImage
+            summary = userRequest.summary
             gender = userRequest.gender
             dateOfBirth = userRequest.dateOfBirth
             resume = userRequest.resume
+            resumeOutdated = userRequest.resumeOutdated
             uid = userRequest.uid
         })
     }

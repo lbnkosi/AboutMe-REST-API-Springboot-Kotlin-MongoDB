@@ -1,10 +1,6 @@
 package za.co.lbnkosi.aboutmeapi.response
 
-import org.bson.types.ObjectId
 import za.co.lbnkosi.aboutmeapi.models.Project
-import za.co.lbnkosi.aboutmeapi.requests.PortfolioRequest
-import za.co.lbnkosi.aboutmeapi.requests.ProjectRequest
-import za.co.lbnkosi.aboutmeapi.response.AddressResponse.Companion.toRequest
 
 class ProjectResponse(
     var id: String?,
@@ -14,7 +10,8 @@ class ProjectResponse(
     var downloadLink: String = "",
     var githubLink: String = "",
     var description: String = "",
-    var image: String = ""
+    var image: String = "",
+    var featured: Boolean = false
 ) {
     companion object {
         fun ArrayList<Project>.copyProjectToResponse(): ArrayList<ProjectResponse> {
@@ -29,7 +26,8 @@ class ProjectResponse(
                         downloadLink = it.downloadLink,
                         githubLink = it.githubLink,
                         description = it.description,
-                        image = it.image
+                        image = it.image,
+                        featured = it.featured
                     )
                 )
             }

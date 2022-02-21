@@ -13,9 +13,12 @@ class UserResponse(
     var surname: String = " ",
     var title: String = "",
     var profileImage: String = "",
+    var headerImage: String = "",
+    var summary: String = "",
     var gender: String = Gender.MALE.toString(),
     var dateOfBirth: Date = Date(),
-    var resume: String = ""
+    var resume: String = "",
+    var resumeOutdated: Boolean = false
 ) {
     companion object {
         fun User.copyUserToResponse(): UserResponse {
@@ -26,10 +29,13 @@ class UserResponse(
             userResponse.gender = this.gender
             userResponse.name = this.name
             userResponse.profileImage = this.profileImage
+            userResponse.headerImage = this.headerImage
+            userResponse.summary = this.summary
             userResponse.resume = this.resume
             userResponse.secondName = this.secondName
             userResponse.surname = this.surname
             userResponse.title = this.title
+            userResponse.resumeOutdated = this.resumeOutdated
             return userResponse
         }
     }

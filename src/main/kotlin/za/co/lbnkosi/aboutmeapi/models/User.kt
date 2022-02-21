@@ -15,7 +15,10 @@ data class User(
     var surname: String = "",
     var title: String = "",
     var profileImage: String = "",
+    var headerImage: String = "",
+    var summary: String = "",
     var gender: String = Gender.MALE.toString(),
     var dateOfBirth: Date = Date(),
-    var resume: String = ""
+    var resume: String = "",
+    var resumeOutdated: Boolean = false
 )
