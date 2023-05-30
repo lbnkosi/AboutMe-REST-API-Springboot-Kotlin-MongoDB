@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.MongoTemplate
 class SimpleMongoConfig {
     @Bean
     fun mongo(): MongoClient {
-        val connectionString = ConnectionString("yourconfig")
+        val connectionString = ConnectionString("mongodb+srv://lbnkosi:c0r174gBItB@cluster0.lwsvj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         val mongoClientSettings = MongoClientSettings.builder().applyConnectionString(connectionString).build()
         return MongoClients.create(mongoClientSettings)
     }
